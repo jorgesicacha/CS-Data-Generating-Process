@@ -111,8 +111,8 @@ csdata <- function(nspecies,input,cov,idxs,domain=NULL,seed,plot=list(all=TRUE),
       Eco_GRF  <- log(Lam$v)
       Lambda_test <- eco_scale*Lam$v ##Test 
       gridlocs <- expand.grid(x0,y0) ##  Matching resolutions between gridlocs and covariates
-      df.sp <- SpatialPointsDataFrame(coords = gridlocs,data = data.frame(w=c((((log(Lam$v))))),
-                                                                          scalelambda =c((((Lambda_test))))
+      df.sp <- SpatialPointsDataFrame(coords = gridlocs,data = data.frame(w=c(anti_t(rotate(rotate(log(Lam$v))))),
+                                                                          scalelambda =c(anti_t(rotate(rotate(Lambda_test))))
       )) ##Test
       r <- raster(df.sp)
       #r1<-disaggregate(r, fact=res(r)/c(0.056,0.056))
@@ -252,3 +252,4 @@ csdata <- function(nspecies,input,cov,idxs,domain=NULL,seed,plot=list(all=TRUE),
               species_raster=species_rast,lambda_obs_raster=lambda_obs_raster))
   
 }
+  
